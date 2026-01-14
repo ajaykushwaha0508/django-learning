@@ -7,13 +7,10 @@
   </head>
   <body>
     <h1>Welcome - {{name}}</h1>
-
-    {% if posts %} {%for data in posts %}
+    {%for data in posts %}
+    {% comment %} <a href="/posts_app/home/{{data.id}}/"> <h3>{{data.title}}</h3> </a> {% endcomment %}
+    <a href={% url 'posts' data.id %}> <h3>{{data.title}}</h3> </a>
     <p>{{data.content}}</p>
-    {%endfor %} {% elif posts|length == 0 %}
-    <p>posts length is 0</p>
-    {% else %}
-    <p>No posts available</p>
-    {%endif%}
+    {%endfor %}
   </body>
 </html>
