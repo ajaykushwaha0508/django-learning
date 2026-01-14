@@ -237,5 +237,31 @@ def redirectTo(request ,id):
 ------------------------------------------------
 
 
+***************** Templates (redering HTML file) *******************
+
+First create a folder in app which is "templates" 
+
+inside that create html files
+
+now use that file in views
+
+> posts > views
+def blog(request):
+     return render(request ,'blog.html')  // no need to import
+
+!!!!!! but still it not get the template for this we have to add our app in settings.py > INSTALLED_APPS
+
+INSTALLED_APPS = [
+    ....remaing apps,
+    'posts'
+]
+
+
+now it will work .
+
+--------------------------------
+
+
+
 
 

@@ -68,3 +68,7 @@ def getContent(request ,id):
 def redirectTo(request ,id):
      url = reverse("posts" ,args=[id])
      return HttpResponseRedirect(url)
+
+
+def blog(request):
+     return render(request ,'blog.html')
