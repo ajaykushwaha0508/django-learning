@@ -1,4 +1,7 @@
 
+To install Django:
+py -m pip install Django
+
 To create a project :
   django-admin startproject <project name>
 
@@ -15,6 +18,84 @@ settings/configuration for out Django project
 
 4. urls.py 
 contains all the urls for this django project.
+
+
+To run the server : 
+python manage.py runserver
+
+To change the port: 
+python manage.py runserver 1312 
+
+------
+
+Views : 
+views handle request and return response 
+view contains logic to return a response
+
+we create this views using two ways: 
+Function Based views (FBVs)
+Class Based views (CBVs)
+
+-------
+
+let create our first view : 
+
+
+// posts.py
+==> views.py
+from django.shortcuts import render
+from django.http import HttpResponse
+
+# Create your views here.
+
+
+def helloWorld (request) : 
+    return HttpResponse("Hello World")
+
+
+//blog > urls.py 
+
+from posts import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('posts/', views.helloWorld),
+]
+
+
+now in browser go on this : 
+http://127.0.0.1:1331/posts
+
+
+but in above structure their is some syntax is clutering so we create it more preety and struicture way:
+
+insted of directly pass the view in main project url we create a separate url file in app. 
+
+> posts> app_urls.py
+
+from django.urls import path
+from .views import *
+
+urlpatterns=[
+    path('posts/' , helloWorld)
+]
+
+
+> blog > url.py 
+
+from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('posts_app/', include('posts.app_urls')),
+]
+
+now go on this :
+  http://127.0.0.1:1331/posts_app/posts/
+
+
+
+
 
 
 
