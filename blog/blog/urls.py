@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from posts import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts_app/', include('posts.app_urls')),
+     path('<int:id>', views.redirectTo),
 ]

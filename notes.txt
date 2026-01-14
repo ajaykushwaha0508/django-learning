@@ -174,3 +174,68 @@ def getContent(request ,id): // paramter name should be same as defined in url
 
 
 ----------------------------------
+
+
+******************get url using reverse function
+
+
+
+why we should use this 
+
+>blog > urls
+
+urlpatterns = [
+    path('posts_app/', include('posts.app_urls')),
+    path('<int:id>', views.redirectTo),
+]
+
+> posts > urls
+urlpatterns=[
+    path('home/<int:id>/' ,getContent)
+]
+
+
+> post > views
+def redirectTo(request ,id):
+     return HttpResponseRedirect(f'''posts_app/home/{id}''')
+
+
+==> till here all working fine 
+
+>blog > urls
+
+urlpatterns = [
+    path('post_app/', include('posts.app_urls')), //removed s from url
+    path('<int:id>', views.redirectTo),
+]
+
+==> now this will show error
+
+> post > views
+def redirectTo(request ,id):
+     return HttpResponseRedirect(f'''posts_app/home/{id}''') // becasue here is s
+
+
+========== solution ==================
+==> to solve this we use reverse function and path naming 
+
+
+for this we give the name to this path 
+
+>posts > urls
+urlpatterns=[
+    path('home/<int:id>/' ,getContent ,name="posts") // give the name using name 
+]
+
+> posts > views
+from django.urls import reverse
+
+def redirectTo(request ,id):
+     url = reverse("posts" ,args=[id]) // here we use this , why we use args becasue we can see that in url there is a dynamic path which is "id" so to give a default value we use this
+     return HttpResponseRedirect(url)
+
+------------------------------------------------
+
+
+
+
