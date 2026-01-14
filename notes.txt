@@ -326,10 +326,31 @@ and use like this :
   </body>
 </html>
 
+--------------------------
+
+*********** empty tag ***********
+
+
+the content of this tag will show when array is empty or the posts is not available
+
+{%for data in posts %}
+    <p>{{data.content}}</p>
+{% empty %}
+    <li>Sorry, no athletes in this list.</li>
+{%endfor %}
+
 
 ---------------------------
 
 
+******************* Filters 
+
+there is some predefined mathods
+
+<h1>my name is {{name|capfirst|truncatechars:3}}</h1>
+
+
+------------------------
 
 
 

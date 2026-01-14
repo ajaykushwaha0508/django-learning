@@ -71,3 +71,6 @@ def redirectTo(request ,id):
 
 def blog(request):
      return render(request ,'blog.html' ,{"name" : "Ajay" ,"posts" : dummyData})
+
+def about(request):
+     return render(request ,'about.html' ,{"name" : "Ajay" ,"work" : "developer" ,"posts" : [] })
