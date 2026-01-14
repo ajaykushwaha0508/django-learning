@@ -139,5 +139,38 @@ urlpatterns=[
 
 ---------------------
 
+dynamic URl : 
+
+> posts > app.url.py
+
+urlpatterns=[
+  path('home/<int:id>/' ,getContent)  //for this we add the dynamic value in angle bracket // here int is a path converter which provide the strictly this type of value
+]
 
 
+> posts > view.py
+
+from django.http import HttpResponse,HttpResponseNotFound
+def getContent(request ,id): // paramter name should be same as defined in url 
+      html  = ''
+      validId = False
+      for data in dummyData: 
+           if data['id'] == id :
+                foundedData = data
+                validId = True
+                break
+
+      if validId:
+            html += f'''
+                    <div>
+                    <h1>{foundedData['id']} - {foundedData['title']}</h1>
+                    <p>{foundedData['content']}</p>
+                    </div>
+        '''
+            return HttpResponse(html)
+      else:
+            return HttpResponseNotFound("Post Not Found")
+
+
+
+----------------------------------

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseNotFound
 
 # Create your views here.
 
@@ -33,8 +33,31 @@ def home (request):
     for data in dummyData: 
           html += f'''
                <div>
+               <a href='/posts_app/home/{data['id']}'>
                <h1>{data['id']} - {data['title']}</h1>
+               </a>
                <p>{data['content']}</p>
                </div>
 '''
     return HttpResponse(html)
+
+
+def getContent(request ,id):
+      html  = ''
+      validId = False
+      for data in dummyData: 
+           if data['id'] == id :
+                foundedData = data
+                validId = True
+                break
+
+      if validId:
+            html += f'''
+                    <div>
+                    <h1>{foundedData['id']} - {foundedData['title']}</h1>
+                    <p>{foundedData['content']}</p>
+                    </div>
+        '''
+            return HttpResponse(html)
+      else:
+            return HttpResponseNotFound("Post Not Found")
