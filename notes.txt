@@ -1,0 +1,21 @@
+
+To create a project :
+  django-admin startproject <project name>
+
+
+we see these files : 
+1. manage.py
+=> this file is use to give commands related to our django project
+
+2. _init_.py
+an empty file that tells pyton that this directory should be considered a python package
+
+3. settings.py 
+settings/configuration for out Django project
+
+4. urls.py 
+contains all the urls for this django project.
+
+
+
+
