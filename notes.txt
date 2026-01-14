@@ -66,7 +66,7 @@ now in browser go on this :
 http://127.0.0.1:1331/posts
 
 
-but in above structure their is some syntax is clutering so we create it more preety and struicture way:
+======> but in above structure their is some syntax is clutering so we create it more preety and struicture way:
 
 insted of directly pass the view in main project url we create a separate url file in app. 
 
@@ -76,7 +76,7 @@ from django.urls import path
 from .views import *
 
 urlpatterns=[
-    path('posts/' , helloWorld)
+    path('helloWorld/' , helloWorld)
 ]
 
 
@@ -96,7 +96,48 @@ now go on this :
 
 
 
+-----------------
 
+workflow of showing views 
+
+client ----> (request to) ----> django site ------> (django goes in setting.py) ---> ROOT_URLCONF variable (which is path of root file of urls)
+
+
+------------------
+
+**************send html using view : ******************* 
+
+
+> posts > views.py
+
+dummyData = [
+  {
+    "id": 1,
+    "title": "Getting Started with Django",
+   "content": "This article explains the basics of setting up a Django project, creating apps, and running the development server."
+  },
+]
+
+def home (request):
+    html  = ''
+
+    for data in dummyData: 
+          html += f'''
+               <div>
+               <h1>{data['id']} - {data['title']}</h1>
+               <p>{data['content']}</p>
+               </div>
+'''
+    return HttpResponse(html)
+
+> blog > urls.py
+
+urlpatterns=[
+    path('helloWorld/' , helloWorld),
+    path('home/' , home)
+]
+
+---------------------
 
 
 
