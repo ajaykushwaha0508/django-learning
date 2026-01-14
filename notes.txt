@@ -287,6 +287,49 @@ def blog(request):
 --------------------------------
 
 
+*********** dynamic templates using Template Language ****************
+
+we can pass the data in templates 
+
+def blog(request):
+     return render(request ,'blog.html' ,{"name" : "Ajay" ,"posts" : dummyData})
+
+
+
+and use like this :
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Page</title>
+  </head>
+  <body>
+
+    <h1>Welcome - {{name}}</h1>
+
+    {% if posts %} 
+    
+      {%for data in posts %}
+         <p>{{data.content}}</p>
+      {%endfor %} 
+      
+    {% elif posts|length == 0 %}
+        <p>posts length is 0</p>
+
+
+    {% else %}
+    <p>No posts available</p>
+
+    {%endif%}
+  </body>
+</html>
+
+
+---------------------------
+
+
 
 
 

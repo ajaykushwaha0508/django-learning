@@ -24,7 +24,6 @@ dummyData = [
 ]
 
 
-
 def helloWorld (request) : 
     return HttpResponse("Hello World")
 
@@ -71,4 +70,4 @@ def redirectTo(request ,id):
 
 
 def blog(request):
-     return render(request ,'blog.html')
+     return render(request ,'blog.html' ,{"name" : "Ajay" ,"posts" : dummyData})
